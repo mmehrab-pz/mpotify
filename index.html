@@ -29,7 +29,7 @@
     <!-- ---------------------------------------------navbar-------------------------------------- -->
     <nav id="navBar" class="w-full fixed bottom-[10px] left-0 flex px-2.5 gap-2 z-10">
         <ul
-            class="w-[calc(100%-70px)] rounded-[60px] h-[70px] flex justify-between items-center px-2 gap-2 bg-[#1f1f1fb0] backdrop-blur-2xl border border-[#3f3f3f] relative">
+            class="w-[calc(100%-70px)] rounded-[60px] h-[70px] flex justify-between items-center px-2 gap-2 bg-[#1f1f1f7a] backdrop-blur-[40px]  relative">
             <li
                 class="rounded-full h-[85%] w-1/3 flex flex-col justify-between items-center py-1 cursor-pointer relative z-1">
                 <svg class="duration-500" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
@@ -71,13 +71,22 @@
     </nav>
     <!-- ---------------------------------------------main-------------------------------------- -->
     <main class="w-full h-auto">
-        <section id="home" class="w-full h-[100vh] flex justify-center items-center absolute z-5 top-0 left-0">
-            <h2 class="text-white text-[40px] font-['500']">home</h2>
+        <section id="home" class="w-full h-[100vh] px-2.5 block absolute z-5 top-0 left-0">
+            <h2 class="text-white text-[40px] font-['500'] capitalize">home</h2>
+            <a href="https://pourzakaria.com/" target="_blank" class="w-full h-[450px] mt-5 rounded-3xl bg1 flex justify-between items-center flex-col py-5">
+                <figure>
+                    <img src="src/asset/img/mehrab.1.webp" alt="mehrab" class="w-[120px]">
+                </figure>
+                <h2 class="text-white font-['600'] capitalize text-[45px] text-center mb-[50px]">mehrab pourzakaria</h2>
+                <p class="text-white text-[18px] capitalize font-['400']">
+                    Hey, check out my website!
+                </p>
+            </a>
         </section>
-        <section id="radio" class="w-full h-[100vh] justify-center items-center absolute z-6 top-0 left-0 hidden">
+        <section id="radio" class="w-full h-[100vh] px-2.5 justify-center items-center absolute z-6 top-0 left-0 hidden">
             <h2 class="text-white text-[40px] font-['500']">radio</h2>
         </section>
-        <section id="library" class="w-full h-[100vh] justify-center items-center absolute z-7 top-0 left-0 hidden">
+        <section id="library" class="w-full h-[100vh] px-2.5 justify-center items-center absolute z-7 top-0 left-0 hidden">
             <h2 class="text-white text-[40px] font-['500']">library</h2>
         </section>
     </main>

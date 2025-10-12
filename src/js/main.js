@@ -29,7 +29,7 @@ navBtn.forEach((item, index, arr) => {
                 library.classList.remove('flex')
                 library.classList.add('hidden')
                 home.classList.remove('hidden')
-                home.classList.add('flex')
+                home.classList.add('block')
 
 
                 break;
@@ -42,7 +42,7 @@ navBtn.forEach((item, index, arr) => {
                 item.lastElementChild.classList.remove('text-white')
                 library.classList.remove('flex')
                 library.classList.add('hidden')
-                home.classList.remove('flex')
+                home.classList.remove('block')
                 home.classList.add('hidden')
                 radio.classList.remove('hidden')
                 radio.classList.add('flex')
@@ -57,7 +57,7 @@ navBtn.forEach((item, index, arr) => {
                 item.lastElementChild.classList.remove('text-white')
                 radio.classList.remove('flex')
                 radio.classList.add('hidden')
-                home.classList.remove('flex')
+                home.classList.remove('block')
                 home.classList.add('hidden')
                 library.classList.remove('hidden')
                 library.classList.add('flex')
