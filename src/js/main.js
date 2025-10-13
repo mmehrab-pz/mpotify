@@ -24,7 +24,7 @@ navBtn.forEach((item, index, arr) => {
                 item.firstElementChild.setAttribute('fill', '#FA586A')
                 item.lastElementChild.classList.add('text-[#FA586A]')
                 item.lastElementChild.classList.remove('text-white')
-                radio.classList.remove('flex')
+                radio.classList.remove('block')
                 radio.classList.add('hidden')
                 library.classList.remove('block')
                 library.classList.add('hidden')
@@ -45,7 +45,7 @@ navBtn.forEach((item, index, arr) => {
                 home.classList.remove('block')
                 home.classList.add('hidden')
                 radio.classList.remove('hidden')
-                radio.classList.add('flex')
+                radio.classList.add('block')
 
                 break;
             case 2:
@@ -55,7 +55,7 @@ navBtn.forEach((item, index, arr) => {
                 item.firstElementChild.setAttribute('fill', '#FA586A')
                 item.lastElementChild.classList.add('text-[#FA586A]')
                 item.lastElementChild.classList.remove('text-white')
-                radio.classList.remove('flex')
+                radio.classList.remove('block')
                 radio.classList.add('hidden')
                 home.classList.remove('block')
                 home.classList.add('hidden')
