@@ -105,7 +105,13 @@
  let artistName = ''
  let coverSrc = ''
  let Src = ''
-
+ const miniCover = document.getElementById('miniCover')
+ const miniTitle = document.getElementById('miniTitle')
+ const miniArtist = document.getElementById('miniArtist')
+ const mainCover = document.getElementById('mainCover')
+ const mainTitle = document.getElementById('mainTitle')
+ const mainArtist = document.getElementById('mainArtist')
+ const player = document.getElementById('player')
 
  songs.forEach(song => {
      const _li = document.createElement('li')
@@ -123,6 +129,7 @@
 
      _li.addEventListener('click', () => {
          const selected = songs.find(s => s.id == _li.dataset.id)
+         //  currentSongIndex = selected;
          songName = selected.title
          artistName = selected.artist
          coverSrc = selected.cover
@@ -131,9 +138,112 @@
          console.log(artistName);
          console.log(coverSrc);
          console.log(Src);
+         const index = songs.findIndex(s => s.id == Number(_li.dataset.id));
+         currentSongIndex = index; // ← حتماً آپدیت شود
+         playSong(currentSongIndex);
+
+         miniCover.setAttribute('src', coverSrc)
+         miniTitle.textContent = songName
+         miniArtist.textContent = artistName
+         mainCover.setAttribute('src', coverSrc)
+         mainTitle.textContent = songName
+         mainArtist.textContent = artistName
+         player.setAttribute('src', Src)
+         _play()
 
      })
-
-
      songsList.appendChild(_li)
  })
+
+ // ----------------------play songs
+ const playBtnMini = document.getElementById('playBtnMini')
+ const playBtnMain = document.getElementById('playBtnMain')
+ const pauseBtnMini = document.getElementById('pauseBtnMini')
+ const pauseBtnMain = document.getElementById('pauseBtnMain')
+
+
+ function _play() {
+     player.play()
+
+     playBtnMini.classList.add('hidden')
+     playBtnMain.classList.add('hidden')
+     pauseBtnMini.classList.remove('hidden')
+     pauseBtnMain.classList.remove('hidden')
+ }
+
+ playBtnMini.addEventListener('click', (event) => {
+     event.stopPropagation()
+     player.play()
+     playBtnMini.classList.add('hidden')
+     playBtnMain.classList.add('hidden')
+     pauseBtnMini.classList.remove('hidden')
+     pauseBtnMain.classList.remove('hidden')
+ })
+ playBtnMain.addEventListener('click', () => {
+     player.play()
+     playBtnMain.classList.add('hidden')
+     playBtnMini.classList.add('hidden')
+     pauseBtnMini.classList.remove('hidden')
+     pauseBtnMain.classList.remove('hidden')
+ })
+
+ // ----------------------pause songs
+
+ pauseBtnMini.addEventListener('click', (event) => {
+     event.stopPropagation()
+     player.pause()
+     playBtnMain.classList.remove('hidden')
+     playBtnMini.classList.remove('hidden')
+     pauseBtnMini.classList.add('hidden')
+     pauseBtnMain.classList.add('hidden')
+ })
+ pauseBtnMain.addEventListener('click', () => {
+     player.pause()
+     playBtnMain.classList.remove('hidden')
+     playBtnMini.classList.remove('hidden')
+     pauseBtnMini.classList.add('hidden')
+     pauseBtnMain.classList.add('hidden')
+ })
+ // ----------------------forward
+ let currentSongIndex = 0;
+ document.querySelectorAll('.forward').forEach((item) => {
+     item.addEventListener('click', (event) => {
+         event.stopPropagation()
+         nextSong();
+     })
+ })
+
+
+ function nextSong() {
+     currentSongIndex++;
+     if (currentSongIndex >= songs.length) currentSongIndex = 0;
+     playSong(currentSongIndex);
+ }
+
+ function playSong(index) {
+     const song = songs[index];
+
+     player.src = song.src;
+     miniCover.src = song.cover;
+     miniTitle.textContent = song.title;
+     miniArtist.textContent = song.artist;
+     mainCover.src = song.cover;
+     mainTitle.textContent = song.title;
+     mainArtist.textContent = song.artist;
+
+     player.play();
+ }
+ // ----------------------rewind
+ function prevSong() {
+     if (currentSongIndex === 0) {
+         currentSongIndex = songs.length - 1;
+     } else {
+         currentSongIndex--;
+     }
+     playSong(currentSongIndex);
+ }
+
+ const rewindBtn = document.getElementById('rewindBtn');
+ rewindBtn.addEventListener('click', () => {
+     prevSong();
+ });
