@@ -429,6 +429,9 @@
   .overflow-hidden {
     overflow: hidden;
   }
+  .rounded {
+    border-radius: 0.25rem;
+  }
   .rounded-3xl {
     border-radius: var(--radius-3xl);
   }
@@ -476,6 +479,12 @@
   .bg-\[\#141414\] {
     background-color: #141414;
   }
+  .bg-\[\#222222\] {
+    background-color: #222222;
+  }
+  .bg-\[\#333333\] {
+    background-color: #333333;
+  }
   .bg-\[\#333333b0\] {
     background-color: #333333b0;
   }
@@ -487,6 +496,9 @@
   }
   .bg-\[\#FA586A\] {
     background-color: #FA586A;
+  }
+  .bg-\[black\] {
+    background-color: black;
   }
   .bg-amber-50 {
     background-color: var(--color-amber-50);
