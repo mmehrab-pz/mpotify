@@ -31,7 +31,7 @@
         font-family: '800';
         src: url(../asset/font/Inter-ExtraBold.ttf);
     }
-
+    
     .scrollHide {
         overflow-y: auto;
         /* یا scroll */

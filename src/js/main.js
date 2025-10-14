@@ -105,6 +105,7 @@
  let artistName = ''
  let coverSrc = ''
  let Src = ''
+ let theme = ''
  const miniCover = document.getElementById('miniCover')
  const miniTitle = document.getElementById('miniTitle')
  const miniArtist = document.getElementById('miniArtist')
@@ -134,6 +135,7 @@
          artistName = selected.artist
          coverSrc = selected.cover
          Src = selected.src
+         theme = selected.theme
          console.log(songName);
          console.log(artistName);
          console.log(coverSrc);
@@ -141,7 +143,7 @@
          const index = songs.findIndex(s => s.id == Number(_li.dataset.id));
          currentSongIndex = index; // ← حتماً آپدیت شود
          playSong(currentSongIndex);
-
+         mainContorl.style.backgroundColor = theme
          miniCover.setAttribute('src', coverSrc)
          miniTitle.textContent = songName
          miniArtist.textContent = artistName
@@ -161,30 +163,19 @@
  const pauseBtnMini = document.getElementById('pauseBtnMini')
  const pauseBtnMain = document.getElementById('pauseBtnMain')
 
-
  function _play() {
      player.play()
-
-     playBtnMini.classList.add('hidden')
-     playBtnMain.classList.add('hidden')
-     pauseBtnMini.classList.remove('hidden')
-     pauseBtnMain.classList.remove('hidden')
+     HidePlayBtn()
  }
 
  playBtnMini.addEventListener('click', (event) => {
      event.stopPropagation()
      player.play()
-     playBtnMini.classList.add('hidden')
-     playBtnMain.classList.add('hidden')
-     pauseBtnMini.classList.remove('hidden')
-     pauseBtnMain.classList.remove('hidden')
+     HidePlayBtn()
  })
  playBtnMain.addEventListener('click', () => {
      player.play()
-     playBtnMain.classList.add('hidden')
-     playBtnMini.classList.add('hidden')
-     pauseBtnMini.classList.remove('hidden')
-     pauseBtnMain.classList.remove('hidden')
+     HidePlayBtn()
  })
 
  // ----------------------pause songs
@@ -192,17 +183,11 @@
  pauseBtnMini.addEventListener('click', (event) => {
      event.stopPropagation()
      player.pause()
-     playBtnMain.classList.remove('hidden')
-     playBtnMini.classList.remove('hidden')
-     pauseBtnMini.classList.add('hidden')
-     pauseBtnMain.classList.add('hidden')
+     ShowPlayBtn()
  })
  pauseBtnMain.addEventListener('click', () => {
      player.pause()
-     playBtnMain.classList.remove('hidden')
-     playBtnMini.classList.remove('hidden')
-     pauseBtnMini.classList.add('hidden')
-     pauseBtnMain.classList.add('hidden')
+     ShowPlayBtn()
  })
  // ----------------------forward
  let currentSongIndex = 0;
@@ -210,6 +195,7 @@
      item.addEventListener('click', (event) => {
          event.stopPropagation()
          nextSong();
+         HidePlayBtn()
      })
  })
 
@@ -230,6 +216,7 @@
      mainCover.src = song.cover;
      mainTitle.textContent = song.title;
      mainArtist.textContent = song.artist;
+     mainContorl.style.backgroundColor = song.theme
 
      player.play();
  }
@@ -246,4 +233,37 @@
  const rewindBtn = document.getElementById('rewindBtn');
  rewindBtn.addEventListener('click', () => {
      prevSong();
+     HidePlayBtn()
  });
+ //  ------------------song time
+ let _currentTime = ''
+
+ player.addEventListener('timeupdate', () => {
+     const current = player.currentTime;
+     const time = player.duration
+     const minutes = Math.floor(current / 60);
+     const seconds = Math.floor(current % 60);
+     _currentTime = `${minutes}:${seconds.toString().padStart(2, '0')}`
+     document.getElementById('songCurrentTime').innerText = _currentTime
+     if (isNaN(player.duration)) return;
+     document.getElementById('songTime').innerText = `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`
+     let percent = (((player.currentTime) / (player.duration)) * 100)
+
+     document.getElementById('songDuration').style.width = percent + '%'
+ })
+
+
+ //  ------------------------chnage btn func
+ function HidePlayBtn() {
+     playBtnMini.classList.add('hidden')
+     playBtnMain.classList.add('hidden')
+     pauseBtnMini.classList.remove('hidden')
+     pauseBtnMain.classList.remove('hidden')
+ }
+
+ function ShowPlayBtn() {
+     playBtnMain.classList.remove('hidden')
+     playBtnMini.classList.remove('hidden')
+     pauseBtnMini.classList.add('hidden')
+     pauseBtnMain.classList.add('hidden')
+ }
