@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mpotify</title>
     <link rel="stylesheet" href="src/css/output.css">
+    <link rel="manifest" href="manifest.json">
 
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -28,7 +29,7 @@
     <!-- رنگ تم مرورگر -->
     <meta name="theme-color" content="#000000">
 
-<body class="bg-[#141414] w-full h-[100vh] relative select-none overflow-hidden">
+<body class="bg-[#141414] w-full h-[100dvh] relative select-none overflow-hidden">
     <!-- -=================================audio==================================== -->
     <audio id="player" src=""></audio>
     <!-- -=================================audio==================================== -->
@@ -50,16 +51,16 @@
     </div>
     <!-- ---------------------------------------------main control-------------------------------------- -->
     <section id="mainContorl"
-        class="w-full h-full absolute top-0 left-0 bg-[#0000008a] backdrop-blur-[40px] z-30 px-5 translate-y-[0%] duration-500">
+        class="w-full h-[100dvh] absolute top-0 left-0 bg-[#0000008a] backdrop-blur-[40px] z-30 px-5 translate-y-[0%] duration-500">
         <figure class="flex pt-2.5 cursor-pointer">
             <img src="src/asset/img/icon/down.png" alt="" class="w-[30px]">
         </figure>
         <!-- ---cover -->
-        <figure class="flex h-[400px] justify-center items-center mt-5">
-            <img id="mainCover" src="src/asset/img/Big Bite Donuts.png" alt="" class="w-[400px] rounded-full">
+        <figure class="flex h-[50vh] justify-center items-center mt-5">
+            <img id="mainCover" src="src/asset/img/Big Bite Donuts.png" alt="" class="w-[50vh] rounded-full">
         </figure>
         <!-- ----love and title,artist -->
-        <div class="w-full mt-10 flex justify-between items-center">
+        <div class="w-full mt-[3vh] flex justify-between items-center">
             <div>
                 <h3 id="mainTitle" class="text-[white] text-[20px] font-['500'] capitalize"></h3>
                 <h5 id="mainArtist" class="text-[#ffffff83] text-[16px] font-['400'] capitalize"></h5>
@@ -89,7 +90,7 @@
             <span id="songTime" class="text-[white] text-[12px] font-['300']">0:00</span>
         </div>
         <!-- ----control -->
-        <div class="w-full mt-[50px] flex justify-between">
+        <div class="w-full mt-[4vh] mb-[4vh] flex justify-between">
             <figure class="flex items-center">
                 <img src="src/asset/img/icon/shuffle.png" alt="" class="w-[30px] cursor-pointer">
             </figure>
@@ -107,7 +108,7 @@
             </figure>
         </div>
         <!-- ----volume control -->
-        <div class="w-full mt-[50px] flex justify-center">
+        <div class="w-full flex justify-center">
             <figure class="flex items-center">
                 <img src="src/asset/img/icon/lowVolume.png" alt="" class="w-[25px] cursor-pointer">
             </figure>
@@ -351,7 +352,7 @@
     </main>
 </body>
 <script type="module" src="src/js/main.js"></script>
-<!-- <script>
+<script>
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker
             .register("serviceWorker.js")
@@ -362,6 +363,6 @@
                 console.log("service worker not registred !!", err);
             });
     }
-</script> -->
+</script>
 
 </html>

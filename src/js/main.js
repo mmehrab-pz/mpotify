@@ -323,7 +323,7 @@ function setVolume(percent) {
   volumeBar.style.width = `${volume * 100}%`;
 }
 
-// 📌 دسکتاپ: کلیک روی نوار
+//  دسکتاپ: کلیک روی نوار
 volumeContainer.addEventListener('click', (e) => {
   const rect = volumeContainer.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
@@ -333,7 +333,7 @@ volumeContainer.addEventListener('click', (e) => {
   setVolume(percent);
 });
 
-// 📌 دسکتاپ: درگ با موس
+//  دسکتاپ: درگ با موس
 volumeCircle.addEventListener('mousedown', () => (isDragging = true));
 window.addEventListener('mouseup', () => (isDragging = false));
 window.addEventListener('mousemove', (e) => {
@@ -349,7 +349,7 @@ window.addEventListener('mousemove', (e) => {
   setVolume(percent);
 });
 
-// 📌 موبایل: لمس روی نوار
+//  موبایل: لمس روی نوار
 volumeContainer.addEventListener('touchstart', (e) => {
   isDragging = true;
   const touchX = e.touches[0].clientX;

@@ -252,6 +252,27 @@
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
+  .mt-\[3\.5\] {
+    margin-top: 3.5;
+  }
+  .mt-\[3vh\] {
+    margin-top: 3vh;
+  }
+  .mt-\[4\.3VH\] {
+    margin-top: 4.3VH;
+  }
+  .mt-\[4\.3\] {
+    margin-top: 4.3;
+  }
+  .mt-\[4\.3vh\] {
+    margin-top: 4.3vh;
+  }
+  .mt-\[4\] {
+    margin-top: 4;
+  }
+  .mt-\[4vh\] {
+    margin-top: 4vh;
+  }
   .mt-\[30px\] {
     margin-top: 30px;
   }
@@ -269,6 +290,9 @@
   }
   .mr-5 {
     margin-right: calc(var(--spacing) * 5);
+  }
+  .mb-\[4vh\] {
+    margin-bottom: 4vh;
   }
   .mb-\[50px\] {
     margin-bottom: 50px;
@@ -294,17 +318,44 @@
   .table {
     display: table;
   }
+  .h-\[4\.3\] {
+    height: 4.3;
+  }
   .h-\[8px\] {
     height: 8px;
   }
   .h-\[15px\] {
     height: 15px;
   }
+  .h-\[20\%\] {
+    height: 20%;
+  }
+  .h-\[30\%\] {
+    height: 30%;
+  }
+  .h-\[40\%\] {
+    height: 40%;
+  }
+  .h-\[40\] {
+    height: 40;
+  }
   .h-\[40px\] {
     height: 40px;
   }
+  .h-\[50\%\] {
+    height: 50%;
+  }
   .h-\[50px\] {
     height: 50px;
+  }
+  .h-\[50vh\] {
+    height: 50vh;
+  }
+  .h-\[55\%\] {
+    height: 55%;
+  }
+  .h-\[60\%\] {
+    height: 60%;
   }
   .h-\[70px\] {
     height: 70px;
@@ -314,6 +365,9 @@
   }
   .h-\[88\%\] {
     height: 88%;
+  }
+  .h-\[100dvh\] {
+    height: 100dvh;
   }
   .h-\[100vh\] {
     height: 100vh;
@@ -326,6 +380,9 @@
   }
   .h-\[450px\] {
     height: 450px;
+  }
+  .h-\[auto\] {
+    height: auto;
   }
   .h-auto {
     height: auto;
@@ -366,6 +423,9 @@
   .w-\[30px\] {
     width: 30px;
   }
+  .w-\[30vh\] {
+    width: 30vh;
+  }
   .w-\[33\%\] {
     width: 33%;
   }
@@ -381,8 +441,17 @@
   .w-\[50px\] {
     width: 50px;
   }
+  .w-\[50vh\] {
+    width: 50vh;
+  }
+  .w-\[50vw\] {
+    width: 50vw;
+  }
   .w-\[60px\] {
     width: 60px;
+  }
+  .w-\[60vh\] {
+    width: 60vh;
   }
   .w-\[70px\] {
     width: 70px;
@@ -393,6 +462,9 @@
   .w-\[90px\] {
     width: 90px;
   }
+  .w-\[100vh\] {
+    width: 100vh;
+  }
   .w-\[110\%\] {
     width: 110%;
   }
@@ -402,8 +474,14 @@
   .w-\[150px\] {
     width: 150px;
   }
+  .w-\[300vh\] {
+    width: 300vh;
+  }
   .w-\[400px\] {
     width: 400px;
+  }
+  .w-\[400vh\] {
+    width: 400vh;
   }
   .w-\[calc\(100\%-46px\)\] {
     width: calc(100% - 46px);

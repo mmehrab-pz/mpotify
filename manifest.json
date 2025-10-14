@@ -1,46 +1,48 @@
 {
-    "name": "mpotify",
-    "short_name": "mpotify",
-    "start_url": "index.html",
-    "display": "standalone",
-    "categories": ["music", "player", "radio"],
-    "background_color": "#000000",
-    "theme_color": "#000000",
-    "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "src/asset/img/pwa-logo/72.png",
+  "name": "mpotify",
+  "short_name": "mpotify",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "categories": ["music", "player", "radio"],
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [{
+      "src": "/src/asset/img/pwa-logo/72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "src/asset/img/pwa-logo/96.png",
+      "src": "/src/asset/img/pwa-logo/96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "src/asset/img/pwa-logo/128.png",
+      "src": "/src/asset/img/pwa-logo/128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "src/asset/img/pwa-logo/144.png",
+      "src": "/src/asset/img/pwa-logo/144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "src/asset/img/pwa-logo/152.png",
+      "src": "/src/asset/img/pwa-logo/152.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "src/asset/img/pwa-logo/192.png",
+      "src": "/src/asset/img/pwa-logo/192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "src/asset/img/pwa-logo/512.png",
+      "src": "/src/asset/img/pwa-logo/512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
