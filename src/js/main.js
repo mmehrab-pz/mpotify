@@ -89,13 +89,13 @@
      songsPage.classList.remove('translate-x-[100%]')
      setTimeout(() => {
          miniContorl.classList.remove('bottom-[90px]')
-         miniContorl.classList.add('bottom-[10px]')
+         miniContorl.classList.add('bottom-[15px]')
      }, 300);
  })
 
  songsPage.firstElementChild.addEventListener('click', () => {
      songsPage.classList.add('translate-x-[100%]')
-     miniContorl.classList.remove('bottom-[10px]')
+     miniContorl.classList.remove('bottom-[15px]')
      miniContorl.classList.add('bottom-[90px]')
 
  })
@@ -120,11 +120,11 @@
      _li.dataset.id = String(song.id)
      _li.innerHTML = `
             <figure>
-                <img src="${song.cover}" alt="" class="w-[60px] rounded-[6px]">
+                <img src="${song.cover}" alt="" class="w-[50px] rounded-[6px]">
             </figure>
             <div class="ml-2.5">
-                    <h5 class="text-[white] capitalize font-['500'] text-[18px]">${song.title}</h5>
-                    <h6 class="text-[#808080] capitalize font-['400'] text-[16px]">${song.artist}</h6>
+                    <h5 class="text-[white] capitalize font-['500'] text-[16px]">${song.title}</h5>
+                    <h6 class="text-[#808080] capitalize font-['400'] text-[14px]">${song.artist}</h6>
             </div>
     `;
 
