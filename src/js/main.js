@@ -252,7 +252,44 @@
      document.getElementById('songDuration').style.width = percent + '%'
  })
 
+const progressContainer = document.getElementById('progressContainer')
 
+ let isSeeking = false;
+
+ function seek(e) {
+     const rect = progressContainer.getBoundingClientRect();
+     let clientX = e.clientX;
+
+     // اگر touch event بود
+     if (e.touches) clientX = e.touches[0].clientX;
+
+     const percent = (clientX - rect.left) / rect.width;
+     player.currentTime = Math.max(0, Math.min(percent * player.duration, player.duration));
+ }
+
+ // دسکتاپ
+ progressContainer.addEventListener('mousedown', (e) => {
+     isSeeking = true;
+     seek(e);
+ });
+ document.addEventListener('mousemove', (e) => {
+     if (isSeeking) seek(e);
+ });
+ document.addEventListener('mouseup', () => {
+     isSeeking = false;
+ });
+
+ // موبایل
+ progressContainer.addEventListener('touchstart', (e) => {
+     isSeeking = true;
+     seek(e);
+ });
+ progressContainer.addEventListener('touchmove', (e) => {
+     if (isSeeking) seek(e);
+ });
+ progressContainer.addEventListener('touchend', () => {
+     isSeeking = false;
+ });
  //  ------------------------chnage btn func
  function HidePlayBtn() {
      playBtnMini.classList.add('hidden')
@@ -267,3 +304,69 @@
      pauseBtnMini.classList.add('hidden')
      pauseBtnMain.classList.add('hidden')
  }
+
+ // ----------------------volume control
+const volumeContainer = document.getElementById('volumeContainer');
+const volumeBar = document.getElementById('volumeBar');
+const volumeCircle = document.getElementById('volumeCircle');
+
+player.volume = 0.5; // صدای اولیه
+
+let isDragging = false;
+
+// تابع تنظیم صدا
+function setVolume(percent) {
+  const volume = Math.max(0, Math.min(percent, 1)); // بین 0 تا 1
+  player.volume = volume;
+
+  // به‌روزرسانی ظاهر نوار
+  volumeBar.style.width = `${volume * 100}%`;
+}
+
+// 📌 دسکتاپ: کلیک روی نوار
+volumeContainer.addEventListener('click', (e) => {
+  const rect = volumeContainer.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+
+  const percent = clickX / width;
+  setVolume(percent);
+});
+
+// 📌 دسکتاپ: درگ با موس
+volumeCircle.addEventListener('mousedown', () => (isDragging = true));
+window.addEventListener('mouseup', () => (isDragging = false));
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+
+  const rect = volumeContainer.getBoundingClientRect();
+  let moveX = e.clientX - rect.left;
+
+  // محدود کردن به داخل نوار
+  moveX = Math.max(0, Math.min(moveX, rect.width));
+
+  const percent = moveX / rect.width;
+  setVolume(percent);
+});
+
+// 📌 موبایل: لمس روی نوار
+volumeContainer.addEventListener('touchstart', (e) => {
+  isDragging = true;
+  const touchX = e.touches[0].clientX;
+  const rect = volumeContainer.getBoundingClientRect();
+  const percent = (touchX - rect.left) / rect.width;
+  setVolume(percent);
+});
+volumeContainer.addEventListener('touchmove', (e) => {
+  if (!isDragging) return;
+  const touchX = e.touches[0].clientX;
+  const rect = volumeContainer.getBoundingClientRect();
+  let moveX = touchX - rect.left;
+
+  moveX = Math.max(0, Math.min(moveX, rect.width));
+  const percent = moveX / rect.width;
+  setVolume(percent);
+});
+volumeContainer.addEventListener('touchend', () => {
+  isDragging = false;
+});
