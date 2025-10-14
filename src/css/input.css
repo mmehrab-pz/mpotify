@@ -31,7 +31,7 @@
         font-family: '800';
         src: url(../asset/font/Inter-ExtraBold.ttf);
     }
-    
+
     .scrollHide {
         overflow-y: auto;
         /* یا scroll */
@@ -44,6 +44,29 @@
     .scrollHide::-webkit-scrollbar {
         display: none;
         /* برای Chrome، Safari و Opera */
+    }
+
+    /* HTML: <div class="loader"></div> */
+    .loader {
+        width: fit-content;
+        font-size: 40px;
+        font-family: '600';
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #ffffff00;
+        background: conic-gradient(#ffffff 0 0) 0/0% 100% no-repeat text;
+        animation: l1 2s linear infinite;
+        margin-left: 10px;
+    }
+
+    .loader:before {
+        content: "Mpotify";
+    }
+
+    @keyframes l1 {
+        to {
+            background-size: 120% 100%
+        }
     }
 }
 
