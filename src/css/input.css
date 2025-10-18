@@ -105,6 +105,21 @@
             radial-gradient(at 80% 100%, hsla(209, 96%, 59%, 1) 0px, transparent 50%),
             radial-gradient(at 0% 0%, hsla(209, 68%, 61%, 1) 0px, transparent 50%);
     }
+
+    .bg5 {
+        background-image: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    }
+
+    .bg6 {
+
+        /* background-image: radial-gradient(farthest-corner circle at 50% 85% in oklch,
+                oklch(25% 0.15 75),
+                oklch(70% .25 35));
+        background-image: radial-gradient(farthest-corner circle at 50% 85%, #470500, #ff4600); */
+
+       background-image: linear-gradient(to right top, #ff0000, #f31816, #e72523, #da2e2d, #cc3635, #bd3736, #ae3837, #9f3838, #8c3434, #792f2f, #672b2b, #552626);
+       
+    }
 }
 
 @theme {}

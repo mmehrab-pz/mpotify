@@ -1,11 +1,14 @@
  import {
      songs
  } from './data.js';
+ import {
+     radio
+ } from './radioData.js';
  // ----------------------navBar
  const navBtn = document.querySelectorAll('#navBar>ul>li')
  const navSpan = document.querySelector('#navBar>ul>span')
  const home = document.getElementById('home')
- const radio = document.getElementById('radio')
+ const _radio = document.getElementById('radio')
  const library = document.getElementById('library')
 
  let liNum = ''
@@ -27,8 +30,8 @@
                  item.firstElementChild.setAttribute('fill', '#FA586A')
                  item.lastElementChild.classList.add('text-[#FA586A]')
                  item.lastElementChild.classList.remove('text-white')
-                 radio.classList.remove('block')
-                 radio.classList.add('hidden')
+                 _radio.classList.remove('block')
+                 _radio.classList.add('hidden')
                  library.classList.remove('block')
                  library.classList.add('hidden')
                  home.classList.remove('hidden')
@@ -47,8 +50,8 @@
                  library.classList.add('hidden')
                  home.classList.remove('block')
                  home.classList.add('hidden')
-                 radio.classList.remove('hidden')
-                 radio.classList.add('block')
+                 _radio.classList.remove('hidden')
+                 _radio.classList.add('block')
 
                  break;
              case 2:
@@ -58,8 +61,8 @@
                  item.firstElementChild.setAttribute('fill', '#FA586A')
                  item.lastElementChild.classList.add('text-[#FA586A]')
                  item.lastElementChild.classList.remove('text-white')
-                 radio.classList.remove('block')
-                 radio.classList.add('hidden')
+                 _radio.classList.remove('block')
+                 _radio.classList.add('hidden')
                  home.classList.remove('block')
                  home.classList.add('hidden')
                  library.classList.remove('hidden')
@@ -152,7 +155,7 @@
          mainArtist.textContent = artistName
          player.setAttribute('src', Src)
          _play()
-
+         pauseRadio()
      })
      songsList.appendChild(_li)
  })
@@ -166,16 +169,19 @@
  function _play() {
      player.play()
      HidePlayBtn()
+     pauseRadio()
  }
 
  playBtnMini.addEventListener('click', (event) => {
      event.stopPropagation()
      player.play()
      HidePlayBtn()
+     pauseRadio()
  })
  playBtnMain.addEventListener('click', () => {
      player.play()
      HidePlayBtn()
+     pauseRadio()
  })
 
  // ----------------------pause songs
@@ -252,7 +258,7 @@
      document.getElementById('songDuration').style.width = percent + '%'
  })
 
-const progressContainer = document.getElementById('progressContainer')
+ const progressContainer = document.getElementById('progressContainer')
 
  let isSeeking = false;
 
@@ -306,67 +312,139 @@ const progressContainer = document.getElementById('progressContainer')
  }
 
  // ----------------------volume control
-const volumeContainer = document.getElementById('volumeContainer');
-const volumeBar = document.getElementById('volumeBar');
-const volumeCircle = document.getElementById('volumeCircle');
+ const volumeContainer = document.getElementById('volumeContainer');
+ const volumeBar = document.getElementById('volumeBar');
+ const volumeCircle = document.getElementById('volumeCircle');
 
-player.volume = 0.5; // صدای اولیه
+ player.volume = 0.5;
 
-let isDragging = false;
+ let isDragging = false;
 
-// تابع تنظیم صدا
-function setVolume(percent) {
-  const volume = Math.max(0, Math.min(percent, 1)); // بین 0 تا 1
-  player.volume = volume;
+ function setVolume(percent) {
+     const volume = Math.max(0, Math.min(percent, 1));
+     player.volume = volume;
 
-  // به‌روزرسانی ظاهر نوار
-  volumeBar.style.width = `${volume * 100}%`;
-}
+     volumeBar.style.width = `${volume * 100}%`;
+ }
 
-//  دسکتاپ: کلیک روی نوار
-volumeContainer.addEventListener('click', (e) => {
-  const rect = volumeContainer.getBoundingClientRect();
-  const clickX = e.clientX - rect.left;
-  const width = rect.width;
+ volumeContainer.addEventListener('click', (e) => {
+     const rect = volumeContainer.getBoundingClientRect();
+     const clickX = e.clientX - rect.left;
+     const width = rect.width;
 
-  const percent = clickX / width;
-  setVolume(percent);
-});
+     const percent = clickX / width;
+     setVolume(percent);
+ });
 
-//  دسکتاپ: درگ با موس
-volumeCircle.addEventListener('mousedown', () => (isDragging = true));
-window.addEventListener('mouseup', () => (isDragging = false));
-window.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
+ volumeCircle.addEventListener('mousedown', () => (isDragging = true));
+ window.addEventListener('mouseup', () => (isDragging = false));
+ window.addEventListener('mousemove', (e) => {
+     if (!isDragging) return;
 
-  const rect = volumeContainer.getBoundingClientRect();
-  let moveX = e.clientX - rect.left;
+     const rect = volumeContainer.getBoundingClientRect();
+     let moveX = e.clientX - rect.left;
 
-  // محدود کردن به داخل نوار
-  moveX = Math.max(0, Math.min(moveX, rect.width));
+     moveX = Math.max(0, Math.min(moveX, rect.width));
 
-  const percent = moveX / rect.width;
-  setVolume(percent);
-});
+     const percent = moveX / rect.width;
+     setVolume(percent);
+ });
 
-//  موبایل: لمس روی نوار
-volumeContainer.addEventListener('touchstart', (e) => {
-  isDragging = true;
-  const touchX = e.touches[0].clientX;
-  const rect = volumeContainer.getBoundingClientRect();
-  const percent = (touchX - rect.left) / rect.width;
-  setVolume(percent);
-});
-volumeContainer.addEventListener('touchmove', (e) => {
-  if (!isDragging) return;
-  const touchX = e.touches[0].clientX;
-  const rect = volumeContainer.getBoundingClientRect();
-  let moveX = touchX - rect.left;
+ volumeContainer.addEventListener('touchstart', (e) => {
+     isDragging = true;
+     const touchX = e.touches[0].clientX;
+     const rect = volumeContainer.getBoundingClientRect();
+     const percent = (touchX - rect.left) / rect.width;
+     setVolume(percent);
+ });
+ volumeContainer.addEventListener('touchmove', (e) => {
+     if (!isDragging) return;
+     const touchX = e.touches[0].clientX;
+     const rect = volumeContainer.getBoundingClientRect();
+     let moveX = touchX - rect.left;
 
-  moveX = Math.max(0, Math.min(moveX, rect.width));
-  const percent = moveX / rect.width;
-  setVolume(percent);
-});
-volumeContainer.addEventListener('touchend', () => {
-  isDragging = false;
-});
+     moveX = Math.max(0, Math.min(moveX, rect.width));
+     const percent = moveX / rect.width;
+     setVolume(percent);
+ });
+ volumeContainer.addEventListener('touchend', () => {
+     isDragging = false;
+ });
+
+ // ----------------------get radio
+ const RadioPlayer = document.getElementById('RadioPlayer')
+ const radios = document.querySelectorAll('.radio')
+ const pauseBtnRadio = document.getElementById('pauseBtnRadio')
+ const playBtnRadio = document.getElementById('playBtnRadio')
+ let radioTitle = ''
+ let radioDes = ''
+ let radioUrl = ''
+ let radioCover = ''
+ let radioTheme = ''
+
+
+ radios.forEach((item) => {
+     item.addEventListener('click', () => {
+         const radioSelect = radio.find(s => s.id == Number(item.dataset.id))
+         radioTitle = radioSelect.title
+         radioDes = radioSelect.description
+         radioUrl = radioSelect.url
+         radioCover = radioSelect.cover
+         radioTheme = radioSelect.theme
+         console.log(radioTheme);
+         
+         player.pause()
+         ShowPlayBtn()
+         document.getElementById('radioConCover').setAttribute('src', radioCover)
+          document.getElementById('radioControl').style.backgroundColor = radioTheme
+         RadioPlayer.setAttribute('src', radioUrl)
+         document.getElementById('radioConTitle').innerText = radioTitle
+         document.getElementById('radiConDes').innerText = radioDes
+         playRaido()
+     })
+
+ })
+ console.log(radio);
+
+ function pauseRadio() {
+     RadioPlayer.pause()
+     openRadioC.classList.remove('bg-[#FA586A]')
+     openRadioC.firstElementChild.classList.remove('animate-pulse')
+     playBtnRadio.classList.remove('hidden')
+     playBtnRadio.classList.remove('hidden')
+     pauseBtnRadio.classList.add('hidden')
+     pauseBtnRadio.classList.add('hidden')
+ }
+
+ function playRaido() {
+     RadioPlayer.play()
+     openRadioC.classList.add('bg-[#FA586A]')
+     openRadioC.firstElementChild.classList.add('animate-pulse')
+     playBtnRadio.classList.add('hidden')
+     playBtnRadio.classList.add('hidden')
+     pauseBtnRadio.classList.remove('hidden')
+     pauseBtnRadio.classList.remove('hidden')
+ }
+
+ // -----------------------open radio control
+ const openRadioC = document.getElementById('radioBtn')
+ const radioControl = document.getElementById('radioControl')
+
+
+
+ openRadioC.addEventListener('click', () => {
+     radioControl.classList.remove('translate-y-[100%]')
+ })
+
+ radioControl.firstElementChild.addEventListener('click', () => {
+     radioControl.classList.add('translate-y-[100%]')
+ })
+ // -----------------------play and pause
+ playBtnRadio.addEventListener('click', () => {
+     playRaido()
+     player.pause()
+     ShowPlayBtn()
+ })
+ pauseBtnRadio.addEventListener('click', () => {
+     pauseRadio()
+ })

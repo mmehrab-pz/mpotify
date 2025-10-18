@@ -28,8 +28,15 @@
 
     <!-- رنگ تم مرورگر -->
     <meta name="theme-color" content="#000000">
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
 
-<body class="bg-[#141414] w-full h-[100dvh] relative select-none overflow-hidden">
+<body class="bg-[#141414] w-full h-[100vh] relative select-none overflow-hidden">
     <!-- -----------------------------------------------------------------loading------------------------------------------------------------------- -->
     <section id="loading-screen" style="display: none;"
         class="w-full h-full fixed top-0 left-0 z-[9999] flex justify-center items-center flex-col">
@@ -39,9 +46,10 @@
         </figure>
     </section>
     <!-- -----------------------------------------------------------------main website------------------------------------------------------------------- -->
-    <section id="app-content" style="display: none;" class="w-full h-full">
+    <section id="app-content" style="display: none;" class="w-full h-full overflow-hidden">
         <!-- -=================================audio==================================== -->
         <audio id="player" src=""></audio>
+        <audio id="RadioPlayer" src=""></audio>
         <!-- -=================================audio==================================== -->
         <!-- ---------------------------------------------pages-------------------------------------- -->
         <!-- -----songs -->
@@ -55,8 +63,8 @@
         </div>
         <!-- ---------------------------------------------main control-------------------------------------- -->
         <section id="mainContorl"
-            class="w-full h-[100dvh] absolute top-0 left-0 bg-[#0000008a] backdrop-blur-[40px] z-30 px-5 translate-y-[100%] duration-500">
-            <figure class="flex pt-2.5 cursor-pointer">
+            class="w-full h-full absolute top-0 left-0 bg-[#0000008a] backdrop-blur-[40px] z-30 px-5 translate-y-[100%] duration-500">
+            <figure class=" pt-2.5 cursor-pointer w-fit">
                 <img src="src/asset/img/icon/down.png" alt="" class="w-[30px]">
             </figure>
             <!-- ---cover -->
@@ -66,7 +74,9 @@
             <!-- ----love and title,artist -->
             <div class="w-full mt-[3vh] flex justify-between items-center">
                 <div>
-                    <h3 id="mainTitle" class="text-[white] text-[20px] font-['500'] capitalize"></h3>
+                    <h3 id="mainTitle"
+                        class="text-[white] text-[20px] font-['500'] capitalize w-[220px] overflow-hidden whitespace-nowrap text-ellipsis">
+                    </h3>
                     <h5 id="mainArtist" class="text-[#ffffff83] text-[16px] font-['400'] capitalize"></h5>
                 </div>
                 <div class="flex">
@@ -130,6 +140,76 @@
                 </figure>
             </div>
         </section>
+        <!-- ---------------------------------------------radio control-------------------------------------- -->
+        <section id="radioControl"
+            class="w-full h-full absolute top-0 left-0 bg-[#0000008a] backdrop-blur-[40px] z-30 px-5 translate-y-[100%] duration-500">
+            <figure class=" pt-2.5 cursor-pointer w-fit">
+                <img src="src/asset/img/icon/down.png" alt="" class="w-[30px]">
+            </figure>
+            <!-- ---cover -->
+            <figure class="flex h-[50vh] justify-center items-center mt-5">
+                <img id="radioConCover" src="src/asset/img/Big Bite Donuts.png" alt="" class="w-[50vh] rounded-[20px]">
+            </figure>
+            <!-- ----love and title,artist -->
+            <div class="w-full mt-[3vh] flex justify-between items-center">
+                <div>
+                    <h3 id="radioConTitle"
+                        class="text-[white] text-[20px] font-['500'] capitalize w-[220px] overflow-hidden whitespace-nowrap text-ellipsis">
+                    </h3>
+                </div>
+                <div class="flex">
+                    <span
+                        class="flex justify-center items-center w-[50px] h-[50px] bg-[#91919148] backdrop-blur-[40px] rounded-full cursor-pointer">
+                        <img src="src/asset/img/icon/more.png" alt="" class="w-[30px]">
+                    </span>
+                </div>
+            </div>
+            <!-- ----des -->
+            <div class="w-full mt-2.5 mb-2.5">
+                <p id="radiConDes" class="text-[#ffffff79] text-[16px] font-['400']"></p>
+            </div>
+            <!-- ----timeline -->
+            <div class="w-full mt-[4vh]">
+                <span id="" class="w-full h-[8px] flex bg-[#91919148] rounded-full cursor-pointer">
+                    <span id="" class="h-full w-full  bg-[#FA586A] rounded-full relative">
+                        <span class="absolute w-[15px] h-[15px] bg-amber-50 rounded-full right-0 bottom-[-3px]"></span>
+                    </span>
+                </span>
+            </div>
+            <!-- ----time -->
+            <div class="w-full mt-2.5 flex justify-between">
+                <span id="" class="text-[white] text-[12px] font-['300']">0:00</span>
+                <span id="" class="text-[white] text-[12px] font-['300']">0:00</span>
+            </div>
+            <!-- ----control -->
+            <div class="w-full mt-[4vh] mb-[4vh] flex justify-center">
+                <div>
+                    <figure class="flex">
+                        <img id="pauseBtnRadio" src="src/asset/img/icon/pause.png" alt=""
+                            class="w-[60px] mx-6 cursor-pointer hidden">
+                        <img id="playBtnRadio" src="src/asset/img/icon/play.png" alt=""
+                            class="w-[60px] mx-6 cursor-pointer">
+                    </figure>
+                </div>
+            </div>
+            <!-- ----volume control -->
+            <div class="w-full flex justify-center">
+                <figure class="flex items-center">
+                    <img src="src/asset/img/icon/lowVolume.png" alt="" class="w-[25px] cursor-pointer">
+                </figure>
+                <div class=" w-[90%] flex items-center mx-2.5">
+                    <span id="volumeContainer" class="w-full h-[8px] bg-[#91919148] rounded-full flex cursor-pointer">
+                        <span id="volumeBar" class="h-full w-[50%]  bg-[#ffffff] rounded-full relative">
+                            <span id="volumeCircle"
+                                class="absolute w-[15px] h-[15px] bg-amber-50 rounded-full right-0 bottom-[-3px]"></span>
+                        </span>
+                    </span>
+                </div>
+                <figure class="flex items-center">
+                    <img src="src/asset/img/icon/audio.png" alt="" class="w-[25px] cursor-pointer">
+                </figure>
+            </div>
+        </section>
         <!-- ---------------------------------------------mini control-------------------------------------- -->
         <div id="miniContorl" class="fixed left-0 bottom-[90px] w-full px-2 z-25 duration-300">
             <span class="w-full h-[50px] rounded-full flex justify-between bg-[#3838387a] backdrop-blur-[40px] px-2.5">
@@ -137,7 +217,9 @@
                     <img id="miniCover" src="src/asset/img/Big Bite Donuts.png" alt="nirvana"
                         class="w-[40px] rounded-full">
                     <div>
-                        <figcaption id="miniTitle" class="text-white font-['400'] capitalize ml-2.5"></figcaption>
+                        <figcaption id="miniTitle"
+                            class="text-white font-['400'] capitalize ml-2.5 w-[200px] overflow-hidden whitespace-nowrap text-ellipsis">
+                        </figcaption>
                         <figcaption id="miniArtist" class="text-[#ffffff9d] text-[14px] font-['300'] capitalize ml-2.5">
                         </figcaption>
                     </div>
@@ -188,20 +270,21 @@
 
                 </span>
             </ul>
-            <span
-                class="bg-[#1f1f1fb0] backdrop-blur-2xl border border-[#3f3f3f] w-[70px] h-[70px] rounded-full flex justify-center items-center cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                    fill="#e3e3e3">
-                    <path
-                        d="M380-320q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
-                </svg>
+            <span id="radioBtn"
+                class="bg-[#1f1f1fb0] backdrop-blur-2xl w-[70px] h-[70px] rounded-full flex justify-center items-center cursor-pointer">
+                <figure>
+                    <img src="src/asset/img/icon/live.png" alt="" class="w-[40px]">
+                </figure>
             </span>
         </nav>
         <!-- ---------------------------------------------main-------------------------------------- -->
         <main class="w-full h-auto">
             <!-- --------------------home-------------------- -->
-            <section id="home" class="w-full h-[100vh] px-5 absolute z-5 top-0 left-0 pb-[150px] scrollHide block">
-                <h2 class="text-white text-[40px] font-['500'] capitalize pt-2.5">home</h2>
+            <section id="home" class="w-full h-[100vh] px-5 absolute z-5 top-0 left-0 pb-[150px] scrollHide">
+                <div class="w-full pt-2.5 flex items-center justify-between">
+                    <h2 class="text-white text-[40px] font-['500'] capitalize">home</h2>
+                    <h3 class="text-white text-[20px] font-['400'] capitalize">demo</h3>
+                </div>
                 <a href="https://pourzakaria.com/" target="_blank"
                     class="w-full h-[450px] mt-5 rounded-3xl bg3 flex justify-between items-center flex-col py-5">
                     <figure>
@@ -254,30 +337,147 @@
             </section>
             <!-- --------------------radio-------------------- -->
             <section id="radio"
-                class="w-full h-[100vh] px-5 justify-center items-center absolute z-6 top-0 left-0 hidden">
-                <h2 class="text-white text-[40px] font-['500'] capitalize pt-2.5">radio</h2>
-                <!-- <div class="w-full flex items-center gap-2.5">
-                <div class=" w-[150px] h-[150px] rounded-[30px] bg-[#2b2b2b] cursor-pointer">
-                    <figure class="w-full h-full flex justify-center items-center">
-                        <img src="src/asset/img/radio/news/ABC_Radio_Australia_logo.svg.png" alt="" class="w-[90%]">
-                    </figure>
+                class="w-full h-[100vh] scrollHide px-5 pb-[150px] justify-center items-center absolute z-6 top-0 left-0 hidden">
+                <div class="w-full pt-2.5 flex items-center justify-between">
+                    <h2 class="text-white text-[40px] font-['500'] capitalize">radio</h2>
+                    <h3 class="text-white text-[20px] font-['400'] capitalize">demo</h3>
                 </div>
-                <div class=" w-[150px] h-[150px] rounded-[30px] bg-[#2b2b2b] cursor-pointer">
-                    <figure class="w-full h-full flex justify-center items-center">
-                        <img src="src/asset/img/radio/news/NPR-logo.png" alt="" class="w-[90%]">
-                    </figure>
+                <!-- ------news -->
+                <div class="w-full flex flex-col items-center gap-2.5">
+                    <h2 class="w-full text-white text-[30px] font-['500']  capitalize">news</h2>
+                    <div data-id="1"
+                        class="radio w-full h-[300px] rounded-[20px] overflow-hidden bg5 flex flex-col justify-between cursor-pointer">
+                        <figure class="w-full h-[calc(100%-100px)] flex justify-center items-center">
+                            <img src="src/asset/img/radio/news/NPR-logo.png" alt="" class="w-[50%]">
+                        </figure>
+                        <div class="w-full h-[100px] bg-[#00000081] p-2.5">
+                            <p class="text-white text-[14px] font-['400']">
+                                <strong>NPR (National Public Radio)</strong> is a leading American media organization
+                                that
+                                delivers high-quality news, cultural programs, and storytelling to inform, inspire,
+                                and connect audiences worldwide.
+                            </p>
+                        </div>
+                    </div>
+                    <div data-id="2"
+                        class="radio w-full h-[300px] rounded-[20px] overflow-hidden bg6 flex flex-col justify-between cursor-pointer">
+                        <figure class="w-full h-[calc(100%-100px)] flex justify-center items-center">
+                            <img src="src/asset/img/radio/news/toppng.com-bbc-radio-black-text-logo-png-1876x1093.png"
+                                alt="" class="w-[50%]">
+                        </figure>
+                        <div class="w-full h-[100px] bg-[#00000081] p-2.5">
+                            <p class="text-white text-[14px] font-['400']">
+                                <strong>BBC Radio</strong> is a world-renowned broadcasting network from the United
+                                Kingdom, offering diverse programming across news, music, culture, and entertainment
+                                with a commitment to quality and impartial journalism.
+                            </p>
+                        </div>
+                    </div>
+                    <div data-id="3"
+                        class="radio w-full h-[300px] rounded-[20px] overflow-hidden  flex flex-col justify-between cursor-pointer bg-[url(../asset/img/radio/news/australia.jpg)] bg-cover">
+                        <figure class="w-full h-[calc(100%-100px)] flex justify-center items-center">
+                            <img src="src/asset/img/radio/news/ABC_Radio_Australia_logo.svg.png" alt="" class="w-[30%]">
+                        </figure>
+                        <div class="w-full h-[100px] bg-[#00000081] p-2.5">
+                            <p class="text-white text-[14px] font-['400']">
+                                <strong>ABC Radio Australia</strong> is an international service of the Australian
+                                Broadcasting Corporation, providing reliable news, insightful analysis, and vibrant
+                                stories from Australia and the Asia-Pacific region.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class=" w-[150px] h-[150px] rounded-[30px] bg-[#2b2b2b] overflow-hidden cursor-pointer">
-                    <figure class="w-full h-full flex">
-                        <img src="src/asset/img/radio/news/BBC_World_Service_2022_(Boxed).svg.png" alt=""
-                            class="w-[110%]">
-                    </figure>
+                <!-- ------music -->
+                <div class="w-full mt-5">
+                    <h2 class="w-full text-white text-[30px] font-['500'] capitalize">music</h2>
+                    <ul class="w-full mt-2.5">
+                        <li data-id="4"
+                            class="radio w-full flex items-center border-b border-b-[#ffffff1f] py-2.5 cursor-pointer">
+                            <figure class="w-[80px] h-[80px] mr-2.5">
+                                <img src="src/asset/img/radio/music/Radio_Swiss_Jazz_Logo_2018.svg.png" alt=""
+                                    class="w-[100px] rounded-[10px]">
+                            </figure>
+                            <div class="w-[calc(100%-80px)]">
+                                <h3 class="text-white text-[18px] font-['400'] capitalize">Radio Swiss Jazz</h3>
+                                <p class="text-[#ffffff81] text-[14px] font-['300']">
+                                    Radio Swiss Jazz is a Swiss station streaming smooth and classic jazz 24/7.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-id="5"
+                            class="radio w-full flex items-center border-b border-b-[#ffffff1f] py-2.5 cursor-pointer">
+                            <figure class="w-[80px] h-[80px] mr-2.5">
+                                <img src="src/asset/img/radio/music/Radio_Swiss_Pop_Logo_2018.svg.png" alt=""
+                                    class="w-[100px] rounded-[10px]">
+                            </figure>
+                            <div class="w-[calc(100%-80px)]">
+                                <h3 class="text-white text-[18px] font-['400'] capitalize">Radio Swiss Pop</h3>
+                                <p class="text-[#ffffff81] text-[14px] font-['300']">
+                                    Radio Swiss Pop is a Swiss station playing international pop hits 24/7.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-id="6"
+                            class="radio w-full flex items-center border-b border-b-[#ffffff1f] py-2.5 cursor-pointer">
+                            <figure class="w-[80px] h-[80px] mr-2.5">
+                                <img src="src/asset/img/radio/music/rsc-web.png" alt=""
+                                    class="w-[100px] rounded-[10px]">
+                            </figure>
+                            <div class="w-[calc(100%-80px)]">
+                                <h3 class="text-white text-[18px] font-['400'] capitalize">Radio Swiss Classic</h3>
+                                <p class="text-[#ffffff81] text-[14px] font-['300']">
+                                    Radio Swiss Classic is a Swiss station streaming timeless classical music 24/7.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-id="7"
+                            class="radio w-full flex items-center border-b border-b-[#ffffff1f] py-2.5 cursor-pointer">
+                            <figure class="w-[80px] h-[80px] mr-2.5">
+                                <img src="src/asset/img/radio/music/radioparadise.png" alt=""
+                                    class="w-[100px] rounded-[10px]">
+                            </figure>
+                            <div class="w-[calc(100%-80px)]">
+                                <h3 class="text-white text-[18px] font-['400'] capitalize">Radio Paradise (Main Mix)</h3>
+                                <p class="text-[#ffffff81] text-[14px] font-['300']">
+                                    Radio Paradise is an independent station blending rock, pop, and world music 24/7.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-id="8"
+                            class="radio w-full flex items-center border-b border-b-[#ffffff1f] py-2.5 cursor-pointer">
+                            <figure class="w-[80px] h-[80px] mr-2.5">
+                                <img src="src/asset/img/radio/music/logog.webp" alt=""
+                                    class="w-[100px] rounded-[10px]">
+                            </figure>
+                            <div class="w-[calc(100%-80px)]">
+                                <h3 class="text-white text-[18px] font-['400'] capitalize">Radio Paradise (Rock Mix)</h3>
+                                <p class="text-[#ffffff81] text-[14px] font-['300']">
+                                   Radio Paradise is an independent online radio station playing an eclectic mix of rock, pop, and world music 24/7.
+                                </p>
+                            </div>
+                        </li>
+                        <li data-id="9"
+                            class="radio w-full flex items-center border-b border-b-[#ffffff1f] py-2.5 cursor-pointer">
+                            <figure class="w-[80px] h-[80px] mr-2.5">
+                                <img src="src/asset/img/radio/music/channels4_profile.jpg" alt=""
+                                    class="w-[100px] rounded-[10px]">
+                            </figure>
+                            <div class="w-[calc(100%-80px)]">
+                                <h3 class="text-white text-[18px] font-['400'] capitalize">Nightride FM</h3>
+                                <p class="text-[#ffffff81] text-[14px] font-['300']">
+                                    Nightride FM is an online radio station streaming synthwave and retro electronic music 24/7.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div> -->
             </section>
             <!-- --------------------library-------------------- -->
             <section id="library" class="w-full px-5 block absolute z-5 top-0 left-0 pb-[100px] hidden">
-                <h2 class="text-white text-[40px] font-['500'] capitalize pt-2.5">library</h2>
+                <div class="w-full pt-2.5 flex items-center justify-between">
+                    <h2 class="text-white text-[40px] font-['500'] capitalize">library</h2>
+                    <h3 class="text-white text-[20px] font-['400'] capitalize">demo</h3>
+                </div>
                 <ul class="w-full mt-5">
                     <!-- ------songs -->
                     <li id="songs" class=" flex items-center py-2.5 border-b border-b-[#ffffff23] cursor-pointer">
@@ -367,7 +567,7 @@
     <section id="install-screen" class="w-full h-full">
         <!-- ------------------android-install -->
         <div id="android-install" style="display: none;"
-            class="w-full h-full flex flex-col justify-center items-center">
+            class="w-full h-full flex flex-col justify-center items-center px-2.5">
             <figure>
                 <img src="src/asset/img/icon/install.png" alt="" class="mb-[3vh]">
             </figure>
@@ -402,7 +602,7 @@
             </div>
         </div>
         <!-- ------------------browser-msg -->
-        <div id="browser-msg" style="display: none;" class="w-full h-full flex-col justify-center items-center">
+        <div id="browser-msg" style="display: none;" class="w-full h-full flex-col justify-center items-center px-2.5">
             <figure>
                 <img src="src/asset/img/icon/install.png" alt="" class="mb-[3vh]">
             </figure>
